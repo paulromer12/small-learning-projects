@@ -1,3 +1,5 @@
 #ignore foobar with google
 /Users/paul/Code/small-learning-projects/foobar_w_google
 
+#ignore .gitignore
+.gitignore
