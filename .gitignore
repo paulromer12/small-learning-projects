@@ -2,4 +2,10 @@
 /Users/paul/Code/small-learning-projects/foobar_w_google
 
 #ignore .gitignore
+.DS_Store
 .gitignore
+twoSum/styles.css
+twoSum/index.js
+twoSum/index.html
+java/Main.java
+java/Main.class
