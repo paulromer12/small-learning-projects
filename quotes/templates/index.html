@@ -32,15 +32,61 @@
             cursor: pointer;
         }
         .next-button:hover { background-color: #0056b3; }
+        .image-button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            opacity: 1;
+        }
+        .image-button:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        .image-container {
+            margin-top: 20px;
+            display: none;
+        }
+        .quote-image {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
     <div class="quote-container">
-        <div class="quote">{{ quote[1] }}</div>
-        <div class="author">- {{ quote[2] }}</div>
-        <a href="{{ url_for('next_quote', quote_id=quote[0]) }}">
+        <div class="quote">{{ quote[0] }}</div>
+        <div class="author">- {{ quote[1] }}</div>
+        <button class="image-button" onclick="toggleImage()" {% if not quote[3] %}disabled{% endif %}>
+            Show Image
+        </button>
+        {% if quote[3] %}
+        <div class="image-container" id="imageContainer">
+            <img src="{{ url_for('get_image', quote_id=quote[2]) }}" alt="Quote Image" class="quote-image">
+        </div>
+        {% endif %}
+        <a href="{{ url_for('home') }}">
             <button class="next-button">Next Quote</button>
         </a>
     </div>
+
+    <script>
+        function toggleImage() {
+            const container = document.getElementById('imageContainer');
+            const button = document.querySelector('.image-button');
+            if (container.style.display === 'none' || !container.style.display) {
+                container.style.display = 'block';
+                button.textContent = 'Hide Image';
+            } else {
+                container.style.display = 'none';
+                button.textContent = 'Show Image';
+            }
+        }
+    </script>
 </body>
 </html>
